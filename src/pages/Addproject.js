@@ -17,7 +17,7 @@ const addPro=()=>{};
         </div>
 
         <div className="mb-3">
-          <label>description</label>
+          <label>Description:</label>
           <input
             type="text"
             className="form-control"
