@@ -1,0 +1,10 @@
+.height-300 {
+    max-height: 300px;
+    align-items: center;
+    align-content: center;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    border-radius: 50%;
+    background-color: gray;
+}
