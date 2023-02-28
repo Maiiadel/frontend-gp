@@ -1,12 +1,36 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header1 from "../Components/Header1";
 import axios from "axios";
 import Swal from "sweetalert2";
+import './SingleProject.css'
 function SingleProject(){
     let [project,setProject]=useState({});
     let params=useParams();
-    let input_file;
+    const navigate=useNavigate();
+    const deleteProject=()=>{
+      Swal.fire({
+        title: 'Do you want to delete the Project?',
+        icon: "warning",
+        showDenyButton: true,
+        denyButtonText: 'DELETE',
+        showCancelButton: true,
+        showConfirmButton:false
+      }).then((result) => {
+        console.log(result);
+        if (result.isDenied) {
+          axios.delete(`http://localhost:8000/Projects/${params.projectid}`)
+          .then((data)=>{Swal.fire('Project Deleted!', '', 'success')});
+          navigate('/Projects');
+        } else{
+          Swal.fire('Project is not deleted', '', 'info')
+        }
+      })
+    }
+    const updateProject=()=>{
+      console.log(project.input_docs);
+    }
     const addFile= async ()=>{
         const { value: file } = await Swal.fire({
             title: 'Select File',
@@ -24,13 +48,13 @@ function SingleProject(){
                 icon: "success",
               })
             //   console.log(e.target.result);
-            project.input_docs=e.target.result;
-
             }
             reader.readAsDataURL(file)
+            project.input_docs=file;
           }
-        //   project.input_docs=input_file;
-        // console.log(project.input_docs);
+          // console.log(file);
+          // project.input_docs=input_file;
+        updateProject();
     }
     const getSingleProject=()=>{
         // fetch or axios stat for getting project info from params then setting it with setProject
@@ -49,7 +73,7 @@ function SingleProject(){
         Project Name:
     </h1>
     <h2>{project.Name}</h2>
-    <div className="row">
+    <div className="row px-5 mx-5 col-9">
         <table className="table table-bordered table-striped table-dark mt-5">
             <thead>
              <tr>
@@ -62,7 +86,7 @@ function SingleProject(){
             <tbody>
               <tr>
                 <td>1</td>
-                <td>{project.input_docs==null? <button className="btn btn-success" onClick={addFile}>Add File</button>: <a href='#'>{project.input_docs}</a>}</td>
+                <td >{project.input_docs==null? <button className="btn btn-success" onClick={addFile}>Add File</button>: <a href='#'>{project.input_docs}</a>}</td>
                 <td>{project.usecase_diagramPNG==null? <button className="btn btn-success">Generate</button>:<a href='#'>{project.usecase_diagramPNG}</a>} </td>
                 <td>{project.class_diagramPNG==null? <button className="btn btn-success">Generate</button>:<a href='#'>{project.class_diagramPNG}</a>} </td>
               </tr>
@@ -70,9 +94,8 @@ function SingleProject(){
             </tbody>
         </table>
     </div>
-
-    {/* table for project name , docs, and diagrams (buttons and links for diagram if exists) */}
-    
+    <br/>
+    <button to="/Projects" type="button" className="btn btn-danger size " onClick={deleteProject}>Delete Project</button>
     </>);
 }
 export default SingleProject;

@@ -6,15 +6,14 @@ function Signup(){
  const adduser=()=>{
   Swal.fire({
     icon: 'success',
-    title: 'Successfully Signed Up',
-    showConfirmButton:true ,
-  })
+    title: 'Successfully Signed Up'
+  }).then()
   
  }
     return(
     <>
     <Header/>
-      <form className="centering mt-5" onSubmit={adduser}>
+      <form className="centering mt-5" >
         <h3>Sign Up</h3>
 
         <div className="mb-3">
@@ -68,7 +67,7 @@ function Signup(){
         </div>
 
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" >
+          <button type="submit" className="btn btn-primary" onClick={adduser}>
             Sign Up
           </button>
         </div>

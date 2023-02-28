@@ -5,6 +5,7 @@ import axios from "axios";
 import './Login.css'
 function Login(){
     // let [Counter,setCounter]=useState(0);
+    let islogged=false;
     let [users,setUsers]= useState([]);
     let [user, setUser]= useState({});
     const getUsers=()=>{
@@ -19,11 +20,17 @@ function Login(){
   }
         // SHA8AAAAL
     const checkusers=()=>{
-            users.map((user)=>{
-              (user.username=="noursabry@gmail.com" & user.password=="4321") && console.log(`logged in ${user.FName}`);
+            users.map((u)=>{
+              (u.username=="noursabry@gmail.com" && u.password=="4321") && setUser(u);
+              // SHA8ALAAAAAA LOLOLOLOLOLYYYYY
             //   setUser(user);
             //  console.log(user.FName);
           })
+          // if (user=={})
+          //  { islogged=true;
+          //   console.log("allaho akbar");}
+          //   else
+          //   console.log("ya rabyyy");
 }
     
     useEffect(
@@ -34,7 +41,7 @@ function Login(){
     return(
         <>
           <Header/>
-      <form className="centering mt-5">
+      <form className="centering mt-5" >
         <h3>Sign In</h3>
         <div className="mb-3">
           <label>Email address</label>

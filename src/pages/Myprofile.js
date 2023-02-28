@@ -27,8 +27,8 @@ function Myprofile(){
     <div className="row">
           {projects.map((project) => {
             return (
-              <div className="col-3 " key={project.id}>
-                <div className="card  mt-5">
+              <div className="col-3" key={project.id}>
+                <div className="card  mt-5 ">
                     {/* Displaying cards for  project name , description, and button open project */}
                  <h2 className="card-title">{project.Name}</h2>
                  <div className="card-body">
@@ -41,7 +41,7 @@ function Myprofile(){
               </div>
             );
           })}
-           <div className="col-3 card  mt-5">
+           <div className="col-2 card pl-5 m-3 mt-5">
                  <h2 className="card-title text-secondary">New Project?</h2>
                  <div className="card-body">
                   <br/>

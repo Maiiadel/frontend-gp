@@ -1,6 +1,9 @@
 .App {
   text-align: center;
   background-image: url('./bg1.jpg') ;
+  padding-right: 5%;
+  padding-left: 5%;
+
 }
 
 h1{

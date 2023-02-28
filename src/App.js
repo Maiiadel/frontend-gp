@@ -1,8 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
 import Login from './pages/Login';
-import Header1 from './Components/Header1';
-import Header from './Components/Header';
 import Signup from './pages/Signup';
 import Footer from './Components/Footer';
 import { Routes, Route, Link } from 'react-router-dom';
@@ -18,11 +16,6 @@ function App() {
      },[]);
   return (
     <div className="App">
-      {/* <Header></Header> */}
-      {/* <Header1></Header1> */}
-      {/* <Login></Login> */}
-      {/* <Home></Home> */}
-      {/* <Signup ></Signup> */}
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='login' element={<Login/>}/>
