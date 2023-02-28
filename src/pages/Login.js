@@ -4,27 +4,27 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import './Login.css'
 function Login(){
-    // let [Counter,setCounter]=useState(0);
-    let islogged=false;
+//    let islogged=false;
+// lesa hn3ml el rember me w el forgot password 
     let [users,setUsers]= useState([]);
     let [user, setUser]= useState({});
+    let [input_username,setusername]=useState('');
+    let [input_pass,setpass]=useState('');
     const getUsers=()=>{
         // fetch statment or axios for getting all users
       axios.get("http://localhost:8000/users")
       .then((data)=>{
-        // console.log(data.data);
         setUsers(data.data);
-      // console.log({users}); 
-      // console.log(data.data);
     });
   }
         // SHA8AAAAL
-    const checkusers=()=>{
+    const checkusers=(e)=>{
+      // b3d myt2kd en el user mwgod yro7 l my proofile b navigate
+      e.preventDefault();
             users.map((u)=>{
-              (u.username=="noursabry@gmail.com" && u.password=="4321") && setUser(u);
-              // SHA8ALAAAAAA LOLOLOLOLOLYYYYY
-            //   setUser(user);
-            //  console.log(user.FName);
+              (u.username==input_username && u.password==input_pass) && setUser(u);
+              console.log(user);
+              // SHA8ALAAAAAA LOLOLOLOLOLYYYYY w bygeb el user el folany mazboot 
           })
           // if (user=={})
           //  { islogged=true;
@@ -36,8 +36,7 @@ function Login(){
     useEffect(
       ()=>{
           getUsers();
-      },[]
-  );
+      },[] );
     return(
         <>
           <Header/>
@@ -49,6 +48,7 @@ function Login(){
             type="email"
             className="form-control"
             placeholder="Enter email"
+            onChange={(e)=>{setusername(e.target.value);}}
           />
         </div>
 
@@ -58,6 +58,7 @@ function Login(){
             type="password"
             className="form-control"
             placeholder="Enter password"
+            onChange={(e)=>{setpass(e.target.value);}}
           />
         </div>
         <div className="mb-3">
@@ -74,9 +75,9 @@ function Login(){
         </div>
 
         <div className="d-grid">
-          <Link to="/Projects" type="submit" className="btn btn-primary" onClick={checkusers}>
+          <button to="#" type="submit" className="btn btn-primary" onClick={checkusers}>
             Submit
-          </Link>
+          </button>
         </div>
         <p className="forgot-password text-right">
             {/* isa lw fe wa2t hb2a a3ml reset  password page form */}
