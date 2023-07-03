@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../Components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Login.css'
 function Login(){
@@ -10,6 +10,7 @@ function Login(){
     let [user, setUser]= useState({});
     let [input_username,setusername]=useState('');
     let [input_pass,setpass]=useState('');
+    const navigate=useNavigate();
     const getUsers=()=>{
         // fetch statment or axios for getting all users
       axios.get("http://localhost:8000/users")
@@ -20,6 +21,7 @@ function Login(){
         // SHA8AAAAL
     const checkusers=(e)=>{
       // b3d myt2kd en el user mwgod yro7 l my proofile b navigate
+      // lazem a3ml prevent default 3a4an myrg3 y3ml refresh 
       e.preventDefault();
             users.map((u)=>{
               (u.username==input_username && u.password==input_pass) && setUser(u);
@@ -31,6 +33,7 @@ function Login(){
           //   console.log("allaho akbar");}
           //   else
           //   console.log("ya rabyyy");
+          navigate('/Projects');
 }
     
     useEffect(
@@ -76,7 +79,7 @@ function Login(){
 
         <div className="d-grid">
           <button to="#" type="submit" className="btn btn-primary" onClick={checkusers}>
-            Submit
+            Log in
           </button>
         </div>
         <p className="forgot-password text-right">
